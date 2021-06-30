@@ -1,0 +1,92 @@
+@import "../../scss/variables";
+
+.nav-bar {
+  grid-column: 1 / 11;
+  height: 100px;
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  align-content: center;
+  font-size: $font-med;
+  font-family: $montserrat;
+}
+
+.navbar-logo {
+  grid-column: 1;
+  color: $red;
+  cursor: pointer;
+  place-self: center;
+  transition: 0.4s;
+}
+
+.navbar-logo:hover {
+  color: $yellow;
+  transition: 0.4s;
+}
+
+.nav-menu {
+  grid-column: 4 / 8;
+  grid-gap: 10px;
+  height: 100%;
+  list-style: none;
+  text-align: center;
+  place-self: center;
+  border-bottom: $red-border;
+}
+
+.nav-menu li {
+  text-decoration: none;
+}
+
+.nav-links {
+  color: $red;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: 0.4s;
+  font-size: $font-med;
+}
+
+.nav-links:hover {
+  color: black;
+  transition: 0.4s;
+  font-weight: 800;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+.btn-container {
+  grid-column: 9 / 11;
+  place-self: center;
+  button {
+    color: $red;
+    font-size: $font-med;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+  .signup-btn {
+    border: $red-border;
+    background-color: $red;
+    padding: 4px 14px;
+    color: $whiteshade;
+    transition: 0.4s;
+  }
+  .signup-btn:hover {
+    color: $red;
+    background-color: $whiteshade;
+    transition: 0.4s;
+  }
+
+  .login-btn {
+    border: $red-border;
+    padding: 4px 14px;
+    color: $red;
+    transition: 0.4s;
+  }
+
+  // .login-btn:hover {
+  //   color: $whiteshade;
+  //   background-color: $red;
+  //   transition: 0.4s;
+  // }
+}

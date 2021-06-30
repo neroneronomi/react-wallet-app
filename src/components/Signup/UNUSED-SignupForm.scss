@@ -1,0 +1,54 @@
+@import "../../scss/variables";
+
+.signup-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .signup-form {
+    background-color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    .signup-content {
+      margin: 0px 4px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+
+      .signup-input {
+        border: $gray-border;
+        border-radius: $rounded;
+        padding: 8px 4px;
+        font-size: $font-med;
+        margin-bottom: 0.75rem;
+        background-color: white;
+      }
+
+      .login-input:focus {
+        border: $yellow-border;
+        transition: 0.4s;
+      }
+
+      .signup-error {
+        border: $testborder2;
+        color: $testcolor;
+        font-size: $font-es;
+      }
+    }
+
+    .signup-btn {
+      border: $yellow-border;
+      background-color: $yellow;
+      font-size: $font-med;
+      border-radius: $rounded;
+      letter-spacing: 1px;
+      margin: 0.5rem 0.5rem;
+      padding: 6px 45px;
+    }
+  }
+}

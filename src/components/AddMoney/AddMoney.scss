@@ -1,0 +1,52 @@
+@import "../../scss/variables";
+
+.am-container {
+  grid-column: 1 / 3;
+  grid-row: 7 / 11;
+  border: $testborder;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .am-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: $testborder1;
+    margin-top: 0.5rem;
+
+    .am-content {
+      border: $testborder2;
+      margin: 1rem;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+
+      .am-label {
+        border: $testborder;
+        color: $testcolor2;
+        margin-bottom: 0.75rem;
+      }
+
+      .am-input {
+        border: $testborder1;
+        color: $testcolor1;
+        margin-bottom: 0.75rem;
+      }
+
+      .am-error {
+        border: $testborder2;
+        color: $testcolor;
+        font-size: $font-es;
+      }
+    }
+
+    .am-btn {
+      border: $testborder2;
+      margin: 0.5rem 0.5rem;
+      padding: 3px;
+    }
+  }
+}

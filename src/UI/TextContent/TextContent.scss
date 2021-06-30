@@ -1,0 +1,16 @@
+@import "../../scss/variables";
+
+.home-content {
+  grid-column: 2 / 4;
+  grid-row: 3 / 9;
+  display: flex;
+  flex-direction: column;
+  // grid-template-rows: repeat (3, 33.33%);
+  .tag-line {
+    color: $red;
+  }
+  .message {
+    margin-top: 40px;
+    font-size: $font-med;
+  }
+}

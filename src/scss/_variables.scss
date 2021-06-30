@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+//Font Size
+$font-es: 0.75rem;
+$font-sm: 1rem;
+$font-med: 1.125rem;
+$font-lg: 1.5rem;
+$font-xlg: 2rem;
+
+//Font Family
+$open-sans: "Open Sans", sans-serif;
+$roboto: "Roboto", sans-serif;
+$montserrat: "Montserrat", sans-serif;
+
+//Colors
+$whiteshade: #E7E6DD;
+$darkgray: #303137;
+$red: #d40000;
+$orange: #d43600;
+$yellow: #ff9201;
+
+//Borders
+$gray-border: 2px solid #303137;
+$red-border: 2px solid #d40000;
+$orange-orader: 2px solid #d43600;
+$yellow-border: 2px solid #ff9201;
+$rounded: 8px;
+
+//For testing purpose
+$testborder: 2px solid red;
+$testborder1: 2px solid green;
+$testborder2: 2px solid blue;
+
+$testcolor: red;
+$testcolor1: green;
+$testcolor2: blue;
+
+$testbgc: wheat;
+$testxhadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
