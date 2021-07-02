@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 const LoginModal = () => {
     return (
         <Popup
-        trigger={<button className='login-btn'>Login</button>}
+        trigger={<button className='login-btn'>Sign In <i className="fas fa-sign-in-alt"></i></button>}
         modal
         nested
       >

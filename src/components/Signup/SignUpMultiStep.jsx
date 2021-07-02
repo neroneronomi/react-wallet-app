@@ -1,34 +1,8 @@
-import { useContext, useState } from 'react';
-import { UserContext } from '../../context/userContext';
+import useSignup from "./useSignUp";
+
 
 const SignupMultiStep = () => {
-    const { addUser } = useContext(UserContext);
-    const [name, setName] = useState("");
-    const [number, setNumber] = useState("");
-    const [password, setPassword] = useState("");
-    const [step, setStep] = useState(1)
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addUser(name, 0 + number, password);
-        setName('');
-        setNumber('');
-        setPassword('');
-    };
-
-    const next = (e) => {
-        e.preventDefault()
-        let currentStep = step
-        currentStep = step >= 2 ? 3 : currentStep + 1
-        setStep(currentStep)
-    };
-
-    const prev = (e) => {
-        e.preventDefault()
-        let currentStep = step
-        currentStep = step <= 1 ? 1 : currentStep - 1
-        setStep(currentStep)
-    };
-
+    const { handleSubmit, handleChange, next, prev, step, values } = useSignup()
     return (
         <>
         <form className="signup-form" onSubmit={handleSubmit}>
@@ -43,8 +17,8 @@ const SignupMultiStep = () => {
                         autoComplete="off"
                         placeholder="Enter Number"
                         required  
-                        value={number}
-                        onChange={(e) => setNumber(e.target.value)}
+                        value={values.number}
+                        onChange={handleChange}
                     />
                     <div className="underline"></div>
                     {/* {errors.firstname && <p className="signup-error">{errors.firstname}</p>} */}
@@ -65,8 +39,8 @@ const SignupMultiStep = () => {
                         autoComplete="off"
                         placeholder="Enter Name"
                         required  
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={values.name}
+                        onChange={handleChange}
                     />
                     <div className="underline"></div>
                     {/* {errors.firstname && <p className="signup-error">{errors.firstname}</p>} */}
@@ -88,8 +62,8 @@ const SignupMultiStep = () => {
                         autoComplete="off"
                         placeholder="Enter Password"
                         required  
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={values.password}
+                        onChange={handleChange}
                     />
                     <div className="underline"></div>
                     {/* {errors.firstname && <p className="signup-error">{errors.firstname}</p>} */}

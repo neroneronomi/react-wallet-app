@@ -8,6 +8,7 @@
   align-content: center;
   font-size: $font-med;
   font-family: $montserrat;
+  position: relative;
 }
 
 .navbar-logo {
@@ -65,28 +66,22 @@
     cursor: pointer;
   }
   .signup-btn {
+    border-radius: 4px;
     border: $red-border;
-    background-color: $red;
-    padding: 4px 14px;
-    color: $whiteshade;
+    background: transparent;
+    padding: 8px 14px;
+    color: $red;
     transition: 0.4s;
   }
   .signup-btn:hover {
-    color: $red;
-    background-color: $whiteshade;
+    border-radius: 4px;
+    color: $whiteshade;
+    background-color: $red;
     transition: 0.4s;
   }
 
   .login-btn {
-    border: $red-border;
     padding: 4px 14px;
     color: $red;
-    transition: 0.4s;
   }
-
-  // .login-btn:hover {
-  //   color: $whiteshade;
-  //   background-color: $red;
-  //   transition: 0.4s;
-  // }
 }

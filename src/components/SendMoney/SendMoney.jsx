@@ -8,43 +8,39 @@ const SendMoney = () => {
     const [amount, setAmount] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
-        sendBalance(number, amount)
+        sendBalance(number, amount);
+        setNumber("");
+        setAmount("")
     };
     return (
     <div className='sm-container'>
         <form className="sm-form" onSubmit={handleSubmit}>
-            <br />
-            <h3>Send Money</h3>
-            <div className="sm-content">
-                <label className="sm-label">
-                    Send to: 
-                </label>
+            <h3><i className="fas fa-exchange-alt"></i>Quick Transfer</h3>
+            <div className="sm-input-container">
+            <div className="recipient">
                 <input 
                     className="sm-input" 
                     type="number"
                     name="amount"
-                    placeholder="Enter Reciever Number"
+                    placeholder="Recipient Number"
                     required
                     value={number}
                     onChange={(e) => setNumber(e.target.value)}
                 />
             </div>
-
-            <div className="sm-content">
-                <label className="sm-label">
-                    Amount: 
-                </label>
+            <div className="amount">
                 <input 
                     className="sm-input" 
                     type="number"
                     name="amount"
-                    placeholder="Enter Amount"
+                    placeholder="Amount"
                     required
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                 />
             </div>
-                <button className='sm-btn' type='submit'>Send Money</button>
+                <button className='sm-btn' type='submit'><i className="fas fa-share-square"></i> Send</button>
+            </div>
          </form>
     </div>
     )

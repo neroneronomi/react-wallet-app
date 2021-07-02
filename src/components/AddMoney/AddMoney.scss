@@ -1,52 +1,88 @@
 @import "../../scss/variables";
 
 .am-container {
-  grid-column: 1 / 3;
-  grid-row: 7 / 11;
-  border: $testborder;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  grid-column: 9 / 12;
+  grid-row: 4 / 8;
+  padding: 0px 40px;
+  position: relative;
+  display: grid;
+  place-items: center;
 
   .am-form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: $gray-border;
+    border-radius: 4px;
+    box-shadow: 0px 0px 18px -1px #2e2e2e;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: $testborder1;
-    margin-top: 0.5rem;
+    justify-content: space-around;
+    margin-right: 30px;
 
-    .am-content {
-      border: $testborder2;
-      margin: 1rem;
-      padding: 0.5rem;
+    h3 {
+      position: relative;
+      margin-left: 20px;
+      color: black;
+    }
+    h3 i {
+      color: $red;
+      margin-right: 12px;
+      font-size: $font-lg;
+    }
+
+    .am-input-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
 
-      .am-label {
-        border: $testborder;
-        color: $testcolor2;
-        margin-bottom: 0.75rem;
+      .am-dropdown {
+        position: relative;
+        margin-bottom: 20px;
+        .am-option {
+          border: 1px solid gray;
+          border-radius: 4px;
+          background: $whiteshade;
+          padding: 4px 23px;
+          font-size: $font-sm;
+        }
+      }
+      .amount {
+        position: relative;
+        margin-bottom: 20px;
+        .am-input {
+          border: 1px solid gray;
+          border-radius: 4px;
+          background: $whiteshade;
+          padding: 4px 8px;
+          font-size: $font-sm;
+        }
+        .am-input:focus {
+          border: 1px solid $red;
+        }
       }
 
-      .am-input {
-        border: $testborder1;
-        color: $testcolor1;
-        margin-bottom: 0.75rem;
+      .am-btn {
+        position: relative;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: $font-med;
+        color: $red;
+        cursor: pointer;
+        transition: transform 0.2s;
       }
-
-      .am-error {
-        border: $testborder2;
-        color: $testcolor;
-        font-size: $font-es;
+      .am-btn:active {
+        transform: translateY(3px);
       }
     }
-
-    .am-btn {
-      border: $testborder2;
-      margin: 0.5rem 0.5rem;
-      padding: 3px;
-    }
+  }
+  .am-form::before {
+    position: absolute;
+    content: "";
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.25;
   }
 }

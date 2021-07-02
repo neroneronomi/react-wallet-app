@@ -1,38 +1,34 @@
-import React, { createContext, useState } from 'react';
-
+import React, { createContext, useState, useEffect } from 'react';
 export const UserContext = createContext();
 
-
 const UserContextProvider = (props) => {
-    const [users, setUsers] = useState([
-        {name:'Oliver Nero', number:'09089885559', password: 'password123', balance: 100, history: [{}]},
-        {name:'Luffy', number:'09178191189', password: 'password1234', balance: 0, history: [{}]}
-    ]);
-    const [activeUser, setActiveUser ] = useState({});
+    const [users, setUsers] = useState(() => {
+        const localData = localStorage.getItem('users');
+        return localData ? JSON.parse(localData) : []
+    });
+
+    useEffect(() => {
+        localStorage.setItem('users', JSON.stringify(users))
+    }, [users])
+
+    const [activeUser, setActiveUser ] = useState(() => {
+        const localData = localStorage.getItem('activeUser');
+        return localData ? JSON.parse(localData) : {}
+    });
+    
+    useEffect(() => {
+        localStorage.setItem('activeUser', JSON.stringify(activeUser))
+    }, [activeUser])
 
     let now = new Date();
     let dateNow = now.toLocaleDateString();
-    let timeNow = now.toLocaleTimeString();
+    let timeNow = now.toLocaleTimeString('en-GB');
 
     const addUser = (name, number, password) => {
-        const getIndex = users.findIndex(user => user.number === number)
-         if (getIndex === -1){
-            setUsers([...users, {name, number, password, balance: 0}]);
-            console.log('User added');
-         } else {
-            console.log('Number already exist');
-        }       
+         setUsers([...users, {name, number, password, balance: 0, history: []}]);
     };
     const loginUser = (number, password) => {
-        const getUser = users.find(user => user.number.includes(number))
-        if (getUser === undefined ) {
-            console.log('Number not yet registered')
-        } else if (getUser.password === password) {
-            setActiveUser({number, password, name: getUser.name, balance: getUser.balance})
-            console.log('You are logged in')
-        } else {
-            console.log('Incorrect Password')
-        }
+        setActiveUser({number, password})
     };
     const logoutUser = () => {
         setActiveUser({})
@@ -44,7 +40,7 @@ const UserContextProvider = (props) => {
         let reciever = users[getIndex]
 
         if ( getIndex === -1 ) {
-            console.log('Error')
+            alert('Error')
         } else {
             reciever['balance'] = parseInt(reciever['balance'] += parseInt(amount));
             setUsers([
@@ -53,27 +49,29 @@ const UserContextProvider = (props) => {
                 ...users.slice(getIndex + 1)
             ]);
             activeUser.balance = parseInt(activeUser.balance += parseInt(amount));
-            recieveRecord.push({type:'recieve', source:'ADMIN', amount: amount, date: dateNow, time: timeNow})
-            console.log(amount + ' is added to wallet');
+            recieveRecord.unshift({type:'RECIEVED', source:'ADMIN', amount: amount, date: dateNow, time: timeNow})
+            alert(amount + ' is added to wallet');
         }
     };
     const sendBalance = (number, amount) => {
         const getIndexReciever = users.findIndex (user => user.number === number);
         const getIndexSender = users.findIndex (user => user.number === activeUser.number);
-        const getUserReciever = users.find(user => user.number.includes(number));
-        const getUserSender = users.find(user => user.number.includes(activeUser.number));
-        let recieveRecord = getUserReciever.history
-        let sendRecord = getUserSender.history
-        let reciever = users[getIndexReciever];
-        let sender = users[getIndexSender];
         if(getIndexReciever !== -1) {
-            if (activeUser.balance < amount) {
-                console.log('Not enough balance')
+
+            const getUserReciever = users.find(user => user.number.includes(number));
+            const getUserSender = users.find(user => user.number.includes(activeUser.number));
+            let recieveRecord = getUserReciever.history
+            let sendRecord = getUserSender.history
+            let reciever = users[getIndexReciever];
+            let sender = users[getIndexSender];
+
+            if (getUserSender.balance < amount) {
+                alert('Not enough balance')
             } else {
                 if (activeUser.number === number) {
-                    console.log(`You can't send to your own wallet! WTF`)
+                    alert(`You can't send to your own wallet! WTF`)
                 } else if(getIndexReciever === -1) {
-                    console.log('Error that hopefuly do not happen')
+                    alert('Error that hopefuly do not happen')
                 } else {
                     reciever['balance'] = parseInt(reciever['balance'] += parseInt(amount))
                     setUsers([
@@ -87,20 +85,33 @@ const UserContextProvider = (props) => {
                         sender,
                         ...users.slice(getIndexSender + 1)
                     ]);
-                    activeUser.balance = parseInt(activeUser.balance -= parseInt(amount));
-                    recieveRecord.push({type:'recieved', source:activeUser.number, amount: amount, date: dateNow, time: timeNow})
-                    sendRecord.push({type:'sent', source:'My Wallet', amount: amount, date: dateNow, time: timeNow})
-                    console.log(amount + ' is sent to ' + number);
+                    recieveRecord.unshift({type:'RECIEVED', source:activeUser.number, amount: amount, date: dateNow, time: timeNow})
+                    sendRecord.unshift({type:'SENT', source:getUserReciever.number, amount: amount, date: dateNow, time: timeNow})
+                    alert(amount + ' is sent to ' + number);
                 }
             }
         } else {
-            console.log('Number not yet registered')
+            alert('Number not yet registered')
         }
     };
+
+    const nowx = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let dateNowx = nowx.toLocaleDateString(undefined, options);
+    let timeNowx = nowx.toLocaleTimeString('en-GB');
+
+    const [date, setDate ] = useState();
+    const [time, setTime ] = useState();
+
+    setTimeout(() => {
+        setTime(timeNowx);
+        setDate(dateNowx);
+      }, 1000);
+
     return (
         <UserContext.Provider value={{
             users, activeUser, addUser, loginUser,
-            logoutUser, addBalance, sendBalance
+            logoutUser, addBalance, sendBalance, date, time
             }}>
             { props.children }
         </UserContext.Provider>

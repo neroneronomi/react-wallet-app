@@ -13,23 +13,30 @@ const AddMoney = () => {
     return (
         <div className='am-container'>
         <form className="am-form" onSubmit={handleSubmit}>
-            <br />
-            <h3>Add Money</h3>
-            <div className="am-content">
-                <label className="am-label">
-                    Amount: 
-                </label>
+            <h3><i className="fas fa-donate"></i> Add Credit</h3>
+            <div className="am-input-container">
+            <div className="am-dropdown">
+                <select className='am-option'>
+                    <option value=''>PIE Admin</option>
+                    <option disabled>Bank Account</option>
+                    <option disabled>7-Eleven</option>
+                    <option disabled>Debit or Credit Card</option>
+                </select>
+            </div>
+
+            <div className="amount">
                 <input 
                     className="am-input" 
                     type="number"
                     name="amount"
-                    placeholder="Enter Amount"
+                    placeholder="Amount"
                     required
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                 />
             </div>
-            <button className='am-btn' type='submit'>Add Money</button>
+            <button className='am-btn' type='submit'><i className="fas fa-money-bill-wave"></i> Recieve </button>
+            </div>
         </form>
     </div>
     )

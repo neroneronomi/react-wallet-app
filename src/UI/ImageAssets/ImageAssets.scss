@@ -9,6 +9,7 @@
     width: 90%;
     place-self: center;
   }
+  position: relative;
 }
 
 .mobile-img {
@@ -19,6 +20,7 @@
   img {
     place-self: center;
   }
+  position: relative;
 }
 
 .stores-img {
@@ -31,4 +33,5 @@
     place-self: center;
     width: 45%;
   }
+  position: relative;
 }

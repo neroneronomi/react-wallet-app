@@ -1,0 +1,9 @@
+@import "../../scss/variables";
+
+.wip-img {
+  grid-column: 2 / 6;
+  grid-row: 10 / 17;
+  img {
+    width: 80%;
+  }
+}
